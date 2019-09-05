@@ -20,7 +20,10 @@ def convertir_tipo_documento(value):
   return arr[value-1]
 
 def convertir_sexo(value):
-  return 'Mujer' if value == '1' else 'Hombre'
+  if value == 1:
+    return 'Mujer'
+  if value == 2:
+    return 'Hombre'
 
 def convertir_etnia(value):
   arr = [
@@ -36,7 +39,10 @@ def convertir_etnia(value):
   return arr[int(value)-1]
 
 def convertir_si_no(value):
-  return 'Si' if value == '1' else 'No'
+  if value == 1:
+    return 'Si'
+  if value == 2:
+    return 'No'
 
 def convertir_tipo_discapacidad(value):
   arr = [

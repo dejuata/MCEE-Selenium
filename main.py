@@ -21,7 +21,7 @@ url = 'https://docs.google.com/forms/d/e/1FAIpQLSd_oXWV8r9pvgmdTJR8ARjblvXGbOhqf
 # Record data to form
 def record_data_form(data, url):
 
-  time = .5
+  time = .8
   # Cargar página
   driver.get(url)
   sleep(3)
@@ -83,7 +83,7 @@ def record_data_form(data, url):
   # Lugar de nacimiento
   driver.find_element_by_css_selector("input[aria-label='11. Lugar de nacimiento']").send_keys(data[13])
   # Sexo
-  sexo = v.convertir_sexo(data[14])
+  sexo = v.convertir_sexo(int(data[14]))
   driver.find_element_by_css_selector(".freebirdFormviewerViewItemsCheckboxChoice div[aria-label='{}']".format(sexo)).click()
 
   # Boton Siguiente
@@ -93,7 +93,7 @@ def record_data_form(data, url):
   # CUARTA SECCIÓN
 
   # LGBTI
-  lgbti = v.convertir_si_no(data[15])
+  lgbti = v.convertir_si_no(int(data[15]))
   sleep(.2)
   driver.find_element_by_css_selector("div[aria-label='{}']".format(lgbti)).click()
   sleep(.2)
@@ -116,7 +116,7 @@ def record_data_form(data, url):
 
   # Discapacidad
   sleep(.5)
-  discapacidad = v.convertir_si_no(data[17])
+  discapacidad = v.convertir_si_no(int(data[17]))
   driver.find_element_by_css_selector("div[aria-label='{}']".format(discapacidad)).click()
   # Boton Siguiente
   driver.find_element_by_xpath("//span[text()='Siguiente']").click()
@@ -157,7 +157,7 @@ def record_data_form(data, url):
   # OCTAVA SECCIÓN
 
   # Victima de conflicto
-  conflicto = v.convertir_si_no(data[20])
+  conflicto = v.convertir_si_no(int(data[20]))
   driver.find_element_by_css_selector("div[aria-label='{}']".format(conflicto)).click()
   # Estudiante
   # Como hay dos grupos de radio button valido el tipo de dato para asi seleccionar
@@ -182,7 +182,7 @@ def record_data_form(data, url):
   # NOVENA SECCIÓN
 
   # Nivel educativo
-  sleep(1)
+  sleep(2)
   driver.find_element_by_css_selector("div[role=listbox]").click() 
   nivel_educativo_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format('Básica Secundaria (Bachillerato básico)')
   wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, nivel_educativo_dropdown)))
@@ -251,11 +251,11 @@ sheet = workbook.get_sheet_by_name(SHEET_NAME)
 # Obtener filas del archivo
 rows = sheet.max_row
 
-def leer_archivo_excel(url, workbook, sheet, cols, rows):
+def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
 
   file = open('./log.txt', "w")
   
-  for r in range(1300, rows+1):
+  for r in range(fila_inicial, fila_final+1):
     print(r)
     data = ['']
     for c in range(1, cols+1):
@@ -269,5 +269,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, rows):
   
   print('end')
 
-# leer_archivo_excel(url, workbook, sheet, 29, 2)
-leer_archivo_excel(url, workbook, sheet, 29, 1500)
+leer_archivo_excel(url, workbook, sheet, 29, 3227, 3300)

@@ -33,7 +33,7 @@ def completar_comuna(workbook, sheet, column, rows):
   # print('Faltan: {}'.format(count))
   print("data success")
 
-completar_comuna(workbook, sheet, 12, 11088)
+# completar_comuna(workbook, sheet, 12, 11088)
 
 def validar_numero(workbook, sheet, column, rows, log):
   
@@ -50,4 +50,4 @@ def validar_numero(workbook, sheet, column, rows, log):
   file.close()
   print("data success")
 
-# validar_numero(workbook, sheet, 27, 11088, './log.txt')
+validar_numero(workbook, sheet, 27, 11088, './log.txt')
