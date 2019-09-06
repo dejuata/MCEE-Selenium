@@ -27,6 +27,7 @@ def convertir_sexo(value):
 
 def convertir_etnia(value):
   arr = [
+    '',
     'Negro, mulato(a), Afrodescendiente, Afrocolombiano(a)',
     'Raizal del archipielago de San Andres, Providencia, Santa Catalina',
     'Palenquero(a) de San Basilio',
@@ -36,7 +37,7 @@ def convertir_etnia(value):
     'No sabe',
     'No responde'
   ]
-  return arr[int(value)-1]
+  return arr[int(value)]
 
 def convertir_si_no(value):
   if value == 1:
@@ -61,7 +62,7 @@ def generar_fecha(value):
   month = random.randint(1,12)
   year = arr[2]
   fecha = "{}/{}/{}".format(day, month, year)
-  return datetime.strptime(fecha, '%d/%m/%y')
+  return datetime.strptime(fecha, "%d/%m/%y")
 
 
 
@@ -74,4 +75,7 @@ def validar_tipo_entero(value):
 
 def validar_tamano(value):
   return len(str(value)) > 10
+
+def validar_lgtbi(value):
+  return (int(value) == 1 or int(value) == 2)
 

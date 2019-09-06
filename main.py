@@ -79,7 +79,10 @@ def record_data_form(data, url):
   # print(fecha)
   el = driver.find_element_by_xpath("//input[@type='date']")
   el.click()
-  el.send_keys(data[12].strftime("%m/%d/%Y"))
+  # fecha = data[12].strftime("%m/%d/%y")
+  sleep(.1)
+  el.send_keys(data[12])
+  sleep(.1)
   # Lugar de nacimiento
   driver.find_element_by_css_selector("input[aria-label='11. Lugar de nacimiento']").send_keys(data[13])
   # Sexo
@@ -197,7 +200,11 @@ def record_data_form(data, url):
   # DECIMA SECCIÓN
 
   # Comuna
-  driver.find_element_by_css_selector("div[role=listbox]").click() 
+  driver.find_element_by_css_selector("div[role=listbox]").click()
+  if data[24] == 'No vive en Cali':
+    driver.find_element_by_css_selector("input[aria-label='24.1- Nombre del municipio donde vive ']").send_keys()
+    driver.find_element_by_css_selector("input[aria-label='24.2- Nombre del barrio donde vive ']").send_keys()
+
   comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[24])
   wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
   driver.find_element_by_css_selector(comuna_dropdown).click()
@@ -269,4 +276,8 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 3227, 3300)
+leer_archivo_excel(url, workbook, sheet, 29, 5505, 6000)
+# Comenzar a partir del registro 4013
+# Laura termina la fila 5000
+# pino comienza 5001 hasta la 5500 - Terminado
+# pino 5501 - 6000
