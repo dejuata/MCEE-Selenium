@@ -20,7 +20,6 @@ url = 'https://docs.google.com/forms/d/e/1FAIpQLSd_oXWV8r9pvgmdTJR8ARjblvXGbOhqf
 
 # Record data to form
 def record_data_form(data, url):
-
   time = .8
   # Cargar página
   driver.get(url)
@@ -201,10 +200,6 @@ def record_data_form(data, url):
 
   # Comuna
   driver.find_element_by_css_selector("div[role=listbox]").click()
-  if data[24] == 'No vive en Cali':
-    driver.find_element_by_css_selector("input[aria-label='24.1- Nombre del municipio donde vive ']").send_keys()
-    driver.find_element_by_css_selector("input[aria-label='24.2- Nombre del barrio donde vive ']").send_keys()
-
   comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[24])
   wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
   driver.find_element_by_css_selector(comuna_dropdown).click()
@@ -212,19 +207,21 @@ def record_data_form(data, url):
   # Boton Siguiente
   driver.find_element_by_xpath("//span[text()='Siguiente']").click()
   
-
-
-  # ONCEAVA SECCIÓN
-
-  # Barrio
-  driver.find_element_by_css_selector("div[role=listbox]").click() 
-  comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[25])
-  wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
-  driver.find_element_by_css_selector(comuna_dropdown).click()
-
-  # Boton Siguiente
-  sleep(time)
-  driver.find_element_by_xpath("//span[text()='Siguiente']").click()
+  if data[24] == 'No vive en Cali':
+    driver.find_element_by_css_selector("input[aria-label='24.1- Nombre del municipio donde vive']").send_keys(data[25])
+    driver.find_element_by_css_selector("input[aria-label='24.2- Nombre del barrio donde vive']").send_keys(data[25])
+    # Boton Siguiente
+    driver.find_element_by_xpath("//span[text()='Siguiente']").click()
+  else:
+    # ONCEAVA SECCIÓN
+    # Barrio
+    driver.find_element_by_css_selector("div[role=listbox]").click() 
+    comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[25])
+    wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
+    driver.find_element_by_css_selector(comuna_dropdown).click()
+    # Boton Siguiente
+    sleep(time)
+    driver.find_element_by_xpath("//span[text()='Siguiente']").click()
   
 
   # DOCEAVA SECCIÓN
@@ -233,7 +230,7 @@ def record_data_form(data, url):
   # driver.find_element_by_css_selector("input[aria-label='26. Dirección']").send_keys(data[21])
   # Telefono
   if not data[26] == None:
-    driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
+    drgiver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
   # Correo
   if not data[27] == None:
     driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
@@ -276,8 +273,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 5505, 6000)
-# Comenzar a partir del registro 4013
-# Laura termina la fila 5000
-# pino comienza 5001 hasta la 5500 - Terminado
-# pino 5501 - 6000
+leer_archivo_excel(url, workbook, sheet, 29, 13677, 13678)

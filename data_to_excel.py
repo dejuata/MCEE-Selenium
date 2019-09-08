@@ -7,8 +7,8 @@ from selenium import webdriver
 
 
 # Read file excel
-# path = './BD2.xlsx'
-path = './CB1.xlsx'
+path = './BD2.xlsx'
+# path = './CB1.xlsx'
 SHEET_NAME = 'TOTAL BENEFICIARIOS EN IEO'
 
 # Cargar Archivo
@@ -27,10 +27,10 @@ def completar_comuna(workbook, sheet, column, rows):
   for r in range(2, rows+1):
     data_cell = sheet.cell(row=r, column=column).value
     
-    # if not data_cell == None:
-    #   if data_cell.lower() == "Vereda Loma Alta".lower():
-    #     sheet.cell(row=r, column=column+1).value = "No vive en Cali"
-    #     sheet.cell(row=r, column=column+2).value = "Vereda Loma Alta"
+    if not data_cell == None:
+      if data_cell.lower() == "V. BLANCA".lower():
+        sheet.cell(row=r, column=column+1).value = "57. Pichinde"
+        sheet.cell(row=r, column=column+2).value = "Peñas Blancas"
 
     comuna = sheet.cell(row=r, column=column+1).value
     if (comuna == None or comuna == " "):
@@ -50,14 +50,14 @@ def validar_numero(workbook, sheet, column, rows, log):
   for r in range(2, rows+1):
     print(r)
     data_cell = sheet.cell(row=r, column=column).value
-    if not (data_cell == None or data_cell == " "):
-      if not validaciones.validar_lgtbi(data_cell):
-        # sheet.cell(row=r, column=column).value = '2'
-        file.write("Row: {} failed".format(r) + os.linesep)
+    fecha = validaciones.validar_fecha(data_cell)
+    # if not validaciones.validar_si_no(data_cell):
+    sheet.cell(row=r, column=column).value = fecha
+      # file.write("Row: {} failed".format(r) + os.linesep)
     
  # Cerrar archivo de texto y excel
-  # workbook.save(path)
+  workbook.save(path)
   file.close()
   print("data success")
 
-validar_numero(workbook, sheet, 15, 12002, './log.txt')
+validar_numero(workbook, sheet, 12, 5394, './log.txt')

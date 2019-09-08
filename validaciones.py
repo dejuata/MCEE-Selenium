@@ -76,6 +76,13 @@ def validar_tipo_entero(value):
 def validar_tamano(value):
   return len(str(value)) > 10
 
-def validar_lgtbi(value):
-  return (int(value) == 1 or int(value) == 2)
+def validar_si_no(value):
+  return int(value) == 1 or int(value) == 2 or int(value) == 3 or int(value) == 4 or int(value) == 5 or int(value) == 6 or int(value) == 7 or int(value) == 8
 
+def validar_fecha(fecha):
+  arr = fecha.split('/')
+  if len(arr[0]) == 1:
+    arr[0] = "0{}".format(arr[0])
+    return '/'.join(arr)
+  else:
+    return fecha
