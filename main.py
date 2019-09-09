@@ -224,7 +224,20 @@ def record_data_form(data, url):
     sleep(time)
     driver.find_element_by_xpath("//span[text()='Siguiente']").click()
   
-
+  if data[24] == 'No Sabe':
+    # Telefono
+    if not data[26] == None:
+      driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
+    # Correo
+    if not data[27] == None:
+      driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
+    # Nombre
+    if not data[28] == None:
+      driver.find_element_by_css_selector("input[aria-label='29. Nombre de la persona que elabora la inscripción']").send_keys(data[28])
+    # FIN FORMULARIO
+    sleep(.2)
+    driver.find_element_by_xpath("//span[text()='Enviar']").click()
+  
   # DOCEAVA SECCIÓN
 
   # Dirección
@@ -274,4 +287,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 15157, 15200)
+leer_archivo_excel(url, workbook, sheet, 29, 15767, 15800)
