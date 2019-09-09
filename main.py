@@ -215,6 +215,7 @@ def record_data_form(data, url):
   else:
     # ONCEAVA SECCIÓN
     # Barrio
+    sleep(0.5)
     driver.find_element_by_css_selector("div[role=listbox]").click() 
     comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[25])
     wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
@@ -230,7 +231,7 @@ def record_data_form(data, url):
   # driver.find_element_by_css_selector("input[aria-label='26. Dirección']").send_keys(data[21])
   # Telefono
   if not data[26] == None:
-    drgiver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
+    driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
   # Correo
   if not data[27] == None:
     driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
@@ -273,4 +274,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 13677, 13678)
+leer_archivo_excel(url, workbook, sheet, 29, 13720, 13800)
