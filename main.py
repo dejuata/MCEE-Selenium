@@ -171,6 +171,8 @@ def record_data_form(data, url):
   sleep(.2)
 
   # En caso afirmativo que Estudie INSTITUCIÓN EDUCATIVA
+  # Taller de Iniciación y sensibilización artistica con comunidad
+  
   # Institución educativa
   # Revisar el excel, PARA VERIFICAR QUE ESTE CAMPO EXISTE
   driver.find_element_by_css_selector("input[aria-label='22. Institución educativa']").send_keys(data[2])
@@ -212,6 +214,19 @@ def record_data_form(data, url):
     driver.find_element_by_css_selector("input[aria-label='24.2- Nombre del barrio donde vive']").send_keys(data[25])
     # Boton Siguiente
     driver.find_element_by_xpath("//span[text()='Siguiente']").click()
+  elif data[24] == 'No Sabe':
+    # Telefono
+    if not (data[26] == None or data[26] == " "):
+      driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
+    # Correo
+    if not (data[27] == None or data[27] == " "):
+      driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
+    # Nombre
+    if not data[28] == None:
+      driver.find_element_by_css_selector("input[aria-label='29. Nombre de la persona que elabora la inscripción']").send_keys(data[28])
+    # FIN FORMULARIO
+    sleep(.2)
+    driver.find_element_by_xpath("//span[text()='Enviar']").click()
   else:
     # ONCEAVA SECCIÓN
     # Barrio
@@ -224,39 +239,25 @@ def record_data_form(data, url):
     sleep(time)
     driver.find_element_by_xpath("//span[text()='Siguiente']").click()
   
-  if data[24] == 'No Sabe':
-    # Telefono
-    if not data[26] == None:
-      driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
-    # Correo
-    if not data[27] == None:
-      driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
-    # Nombre
-    if not data[28] == None:
-      driver.find_element_by_css_selector("input[aria-label='29. Nombre de la persona que elabora la inscripción']").send_keys(data[28])
-    # FIN FORMULARIO
-    sleep(.2)
-    driver.find_element_by_xpath("//span[text()='Enviar']").click()
-  
-  # DOCEAVA SECCIÓN
+  #   # DOCEAVA SECCIÓN
 
-  # Dirección
-  # driver.find_element_by_css_selector("input[aria-label='26. Dirección']").send_keys(data[21])
-  # Telefono
-  if not data[26] == None:
-    driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
-  # Correo
-  if not data[27] == None:
-    driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
-  # Nombre
-  if not data[28] == None:
-    driver.find_element_by_css_selector("input[aria-label='29. Nombre de la persona que elabora la inscripción']").send_keys(data[28])
-  # Observacion
-  # driver.find_element_by_css_selector("input[aria-label='30. Observación']").send_keys(data[25])
+  #   # Dirección
+  #   # driver.find_element_by_css_selector("input[aria-label='26. Dirección']").send_keys(data[21])
+  #   # Telefono
+  #   if not data[26] == None:
+  #     driver.find_element_by_css_selector("input[aria-label='27. Nº Teléfono fijo o celular']").send_keys(int(data[26]))
+  #   # Correo
+  #   if not data[27] == None:
+  #     driver.find_element_by_css_selector("input[aria-label='28. Correo electrónico']").send_keys(data[27])
+  #   # Nombre
+  #   if not data[28] == None:
+  #     driver.find_element_by_css_selector("input[aria-label='29. Nombre de la persona que elabora la inscripción']").send_keys(data[28])
+  #   # Observacion
+  #   # driver.find_element_by_css_selector("input[aria-label='30. Observación']").send_keys(data[25])
 
-  # FIN FORMULARIO
-  sleep(.2)
-  driver.find_element_by_xpath("//span[text()='Enviar']").click()
+  #   # FIN FORMULARIO
+  #   sleep(.2)
+  #   driver.find_element_by_xpath("//span[text()='Enviar']").click()
   
 # Read file excel
 path = './CB1.xlsx'
@@ -287,4 +288,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 15767, 15800)
+leer_archivo_excel(url, workbook, sheet, 29, 16790, 16793)
