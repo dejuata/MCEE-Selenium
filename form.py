@@ -124,7 +124,7 @@ def record_data_form(data, url):
   # SECCIÓN CINCO
   # Comuna
   driver.find_element_by_css_selector("div[role=listbox]").click()
-  comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[21])
+  comuna_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[22])
   wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, comuna_dropdown)))
   driver.find_element_by_css_selector(comuna_dropdown).click()
   sleep(time)
@@ -134,7 +134,7 @@ def record_data_form(data, url):
   # SECCIÓN SEIS
   # Sector
   driver.find_element_by_css_selector("div[role=listbox]").click() 
-  sector_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[22])
+  sector_dropdown = ".exportSelectPopup .quantumWizMenuPaperselectOption[data-value='{}']".format(data[23])
   wait.until(EC.visibility_of_element_located((By.CSS_SELECTOR, sector_dropdown)))
   driver.find_element_by_css_selector(sector_dropdown).click()
   # Boton Siguiente
@@ -143,18 +143,18 @@ def record_data_form(data, url):
 
   # SECCIÓN SIETE
   # Telefono
-  if not (data[23] == None or data[23] == " "):
-    driver.find_element_by_css_selector("input[aria-label='24. Número de teléfono fijo o celular']").send_keys(int(data[23]))
+  if not (data[21] == None or data[21] == " "):
+    driver.find_element_by_css_selector("input[aria-label='24. Número de teléfono fijo o celular']").send_keys(int(data[21]))
   # Correo
   if not (data[24] == None or data[24] == " "):
     driver.find_element_by_css_selector("input[aria-label='25. Correo electrónico']").send_keys(data[24])
 
   # FIN FORMULARIO
   sleep(time1)
-  # driver.find_element_by_xpath("//span[text()='Enviar']").click()
+  driver.find_element_by_xpath("//span[text()='Enviar']").click()
 
 # Read file excel
-path = './BD2.xlsx'
+path = './BD1.xlsx'
 SHEET_NAME = 'TOTAL BENEFICIARIOS EN IEO'
 
 # Cargar Archivo
