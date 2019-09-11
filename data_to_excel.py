@@ -47,20 +47,18 @@ def validar_numero(workbook, sheet, column, rows, log):
   
   file = open(log, "w")
 
-  for r in range(593, rows+1):
+  for r in range(2, rows+1):
     print(r)
     data_cell = sheet.cell(row=r, column=column).value
-    fecha = validaciones.generar_edad(data_cell)
-    if fecha < 21:
-      fecha = fecha + 3
+    fecha = validaciones.generar_edad()
     print(fecha)
     # if not validaciones.validar_si_no(data_cell):
     sheet.cell(row=r, column=column).value = fecha
-      # file.write("Row: {} failed".format(r) + os.linesep)
+    # file.write("Row: {} failed".format(r) + os.linesep)
     
  # Cerrar archivo de texto y excel
   workbook.save(path)
   file.close()
   print("data success")
 
-validar_numero(workbook, sheet, 15, 1591, './log.txt')
+validar_numero(workbook, sheet, 15, 721, './log.txt')

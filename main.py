@@ -288,4 +288,4 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
   
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 16790, 16793)
+# leer_archivo_excel(url, workbook, sheet, 29, 16790, 16793)

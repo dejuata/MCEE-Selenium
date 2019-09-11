@@ -112,6 +112,12 @@ def record_data_form(data, url):
     # Boton Siguiente
     sleep(time)
     driver.find_element_by_xpath("//span[text()='Siguiente']").click()
+  if data[19] != None:
+    tipo_discapacidad = v.convertir_tipo_discapacidad(data[19])
+    driver.find_element_by_css_selector("div[aria-label='{}']".format(tipo_discapacidad)).click()
+    driver.find_element_by_xpath("//span[text()='Siguiente']").click()
+
+  
 
   # SECCIÓN CUATRO
   # Victima de conflicto
@@ -173,8 +179,8 @@ def leer_archivo_excel(url, workbook, sheet, cols, fila_inicial, fila_final):
       data.append(sheet.cell(row=r, column=c).value)
       
     record_data_form(data, url)
-    print(data)
+    # print(data)
     print("data success")
   print('end')
 
-leer_archivo_excel(url, workbook, sheet, 29, 2, 3)
+leer_archivo_excel(url, workbook, sheet, 29, 801, 900)

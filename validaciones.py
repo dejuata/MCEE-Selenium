@@ -87,7 +87,6 @@ def validar_fecha(fecha):
   else:
     return fecha
 
-def generar_edad(fecha):
-  arr = fecha.split('/')
-  # print(fecha)
-  return 2019 - int(arr[2])
+def generar_edad():
+  edad = random.randint(25, 37)
+  return edad
