@@ -86,3 +86,8 @@ def validar_fecha(fecha):
     return '/'.join(arr)
   else:
     return fecha
+
+def generar_edad(fecha):
+  arr = fecha.split('/')
+  # print(fecha)
+  return 2019 - int(arr[2])

@@ -7,7 +7,7 @@ from selenium import webdriver
 
 
 # Read file excel
-path = './BD2.xlsx'
+path = './BD1.xlsx'
 # path = './CB1.xlsx'
 SHEET_NAME = 'TOTAL BENEFICIARIOS EN IEO'
 
@@ -47,10 +47,13 @@ def validar_numero(workbook, sheet, column, rows, log):
   
   file = open(log, "w")
 
-  for r in range(2, rows+1):
+  for r in range(593, rows+1):
     print(r)
     data_cell = sheet.cell(row=r, column=column).value
-    fecha = validaciones.validar_fecha(data_cell)
+    fecha = validaciones.generar_edad(data_cell)
+    if fecha < 21:
+      fecha = fecha + 3
+    print(fecha)
     # if not validaciones.validar_si_no(data_cell):
     sheet.cell(row=r, column=column).value = fecha
       # file.write("Row: {} failed".format(r) + os.linesep)
@@ -60,4 +63,4 @@ def validar_numero(workbook, sheet, column, rows, log):
   file.close()
   print("data success")
 
-validar_numero(workbook, sheet, 12, 5394, './log.txt')
+validar_numero(workbook, sheet, 15, 1591, './log.txt')
